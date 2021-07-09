@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="close_string">Close</string>
+    <string name="sound_description">An image of a speaker used to control background music</string>
+    <string name="nick_logo_description">The orange Nickelodeon splash logo with liitle circles</string>
+    <string name="cartoon_logo_description">The black and white alternating Cartoon Network logo with block letters</string>
+    <string name="freeform_logo_description">The Freeform logo with green letter used between 2016 and 2018</string>
+</resources>

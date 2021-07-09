@@ -109,4 +109,10 @@
     <string name="status_bar_notification_info_overflow">999+</string>
     <string name="start_quiz">Start Quiz</string>
     <string name="start_button">start_button</string>
+    <string name="close_string">Close</string>
+    <string name="sound_description">An image of a speaker used to control background music</string>
+    <string name="Disney_logo_description">The blue and yellow Disney Channel logo that was used between 2010-2014</string>
+    <string name="nick_logo_description">The orange Nickelodeon splash logo with liitle circles</string>
+    <string name="cartoon_logo_description">The black and white alternating Cartoon Network logo with block letters</string>
+    <string name="freeform_logo_description">The Freeform logo with green letter used between 2016 and 2018</string>
 </resources>
