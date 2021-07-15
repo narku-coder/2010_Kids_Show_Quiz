@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.a2010kidsshowquiz">
+    package="com.narku.a2010kidsshowquiz">
 
     <application
         android:allowBackup="true"
@@ -9,10 +9,14 @@
         android:roundIcon="@mipmap/kids_show_trivia_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.2010KidsShowQuiz">
-        <activity android:name=".EndActivity" />
-        <activity android:name=".InfoActivity" />
-        <activity android:name=".QuizActivity" />
-        <activity android:name=".WelcomeActivity">
+        <activity android:name="com.narku.a2010kidsshowquiz.EndActivity" />
+        <activity android:name="com.narku.a2010kidsshowquiz.InfoActivity"
+            android:configChanges="orientation|screenSize|screenLayout|keyboardHidden"
+            android:screenOrientation="portrait"/>
+        <activity android:name="com.narku.a2010kidsshowquiz.QuizActivity"
+            android:configChanges="orientation|screenSize|screenLayout|keyboardHidden"
+            android:screenOrientation="portrait"/>
+        <activity android:name="com.narku.a2010kidsshowquiz.WelcomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

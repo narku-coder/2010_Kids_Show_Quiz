@@ -5,10 +5,11 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
+    android:background="#A90C33"
     tools:context=".InfoActivity">
 
     <TextView android:textSize="25.0sp"
-        android:textColor="#ff00cc"
+        android:textColor="#2d8266"
         android:id="@+id/info_text_view"
         android:background="@drawable/border2"
         android:padding="24.0dip"

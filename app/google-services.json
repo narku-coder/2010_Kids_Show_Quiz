@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "124203123521",
+    "project_id": "tv-show-quiz-25060",
+    "storage_bucket": "tv-show-quiz-25060.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:124203123521:android:232bc62798899c5e1cd7c0",
+        "android_client_info": {
+          "package_name": "com.narku.a2010kidsshowquiz"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "124203123521-i33biurb3tln1d7euhuo224222hu8kdu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBt8yf24jZPgBKaLYNTkqS1iSh2-nn_wrI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "124203123521-i33biurb3tln1d7euhuo224222hu8kdu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
