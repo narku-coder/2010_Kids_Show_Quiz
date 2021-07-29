@@ -1,14 +1,15 @@
 package com.narku.a2010kidsshowquiz;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.util.Log;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -19,8 +20,6 @@ import java.util.List;
 
 public class QuizActivity extends AppCompatActivity
 {
-    private static final String KEY_INDEX = "index";
-    private static final String TAG = "QuizActivity";
     private String answer;
     private ImageView mSoundButton;
     private ImageView mCartoonButton;
@@ -28,6 +27,7 @@ public class QuizActivity extends AppCompatActivity
     private ImageView mDisneyButton;
     private ImageView mFreeformButton;
     private ImageView mNickButton;
+    private Button mQuitButton;
     private final Question[] mQuestionBank = new Question[] {
             new Question(R.string.question_huge, "Freeform", R.string.info_huge, "huge"), new Question(R.string.question_symbionic, "Cartoon Network", R.string.info_symbionic, "symbionic"), new Question(R.string.question_sheen, "Nickelodeon", R.string.info_sheen, "sheen"), new Question(R.string.question_georgia, "Freeform", R.string.info_georgia, "georgia"), new Question(R.string.question_robotomy, "Cartoon Network", R.string.info_robotomy, "robotomy"), new Question(R.string.question_diddo, "Disney", R.string.info_diddo, "diddo"), new Question(R.string.question_jane, "Freeform", R.string.info_jane, "jane"), new Question(R.string.question_friends, "Disney", R.string.info_friends, "whenever"), new Question(R.string.question_plank, "Disney", R.string.info_plank, "prank"), new Question(R.string.question_problem, "Cartoon Network", R.string.info_problem, "problem"),
             new Question(R.string.question_mixels, "Cartoon Network", R.string.info_mixels, "mixel"), new Question(R.string.question_bug, "Disney", R.string.info_bug, "bug"), new Question(R.string.question_random, "Disney", R.string.info_random, "random"), new Question(R.string.question_breadwinner, "Nickelodeon", R.string.info_breadwinner, "breadwinner"), new Question(R.string.question_bunsen, "Nickelodeon", R.string.info_bunsen, "bunsen"), new Question(R.string.question_twisted, "Freeform", R.string.info_twisted, "twisted"), new Question(R.string.question_rex, "Cartoon Network", R.string.info_rex, "rex"), new Question(R.string.question_tower, "Cartoon Network", R.string.info_tower, "tower"), new Question(R.string.question_wayne, "Nickelodeon", R.string.info_wayne, "wayne"), new Question(R.string.question_moguls, "Nickelodeon", R.string.info_moguls, "moguls"),
@@ -49,14 +49,14 @@ public class QuizActivity extends AppCompatActivity
         stringBuilder += this.mCurrentIndex;
         stringBuilder += ".";
         Log.i("QuizActivity", stringBuilder);
-        if (paramString == this.l.get(this.mCurrentIndex).getCorrectAnswer()) {
+        if (paramString.equals(this.l.get(this.mCurrentIndex).getCorrectAnswer())) {
             i = R.string.correct_toast;
             this.score++;
         } else {
             i = R.string.incorrect_toast;
         }
         Toast.makeText(this, i, Toast.LENGTH_SHORT).show();
-        this.mScoreView.setText("Score: " + this.score);
+        this.mScoreView.setText(getString(R.string.score_ind_string)+ " " + this.score);
         Intent intent = new Intent(this, InfoActivity.class);
         intent.putExtra("info", this.l.get(this.mCurrentIndex).getmInfoText());
         intent.putExtra("video", this.l.get(this.mCurrentIndex).getVid());
@@ -85,7 +85,7 @@ public class QuizActivity extends AppCompatActivity
         if (savedInstanceState != null)
             this.mCurrentIndex = savedInstanceState.getInt("index", 0);
         this.player = MediaPlayer.create(this, R.raw.smooth_jazz);
-        this.player.setLooping(false);
+        this.player.setLooping(true);
         this.player.setVolume(100.0F, 100.0F);
         this.mTimerView = findViewById(R.id.timer_text_view);
         ct = new CountDownTimer(30000, 1000) {
@@ -104,6 +104,11 @@ public class QuizActivity extends AppCompatActivity
         int i = this.l.get(this.mCurrentIndex).getmQuestionText();
         this.mQuestionTextView.setText(i);
         this.player.start();
+        this.mQuitButton = findViewById(R.id.quit_button);
+        this.mQuitButton.setOnClickListener(param1View -> {
+            QuizActivity.this.finish();
+            System.exit(0);
+        });
         this.mSoundButton = findViewById(R.id.sound_button);
         this.mSoundButton.setOnClickListener(param1View -> {
            if(player.isPlaying())
@@ -146,7 +151,7 @@ public class QuizActivity extends AppCompatActivity
             QuizActivity.this.updateQuestion();
         });
         this.mScoreView = findViewById(R.id.score_text_view);
-        this.mScoreView.setText("Score: " + this.score);
+        this.mScoreView.setText(getString(R.string.score_ind_string) + " " + this.score);
         endGame(this.mCurrentIndex);
     }
 
@@ -169,7 +174,7 @@ public class QuizActivity extends AppCompatActivity
         super.onResume();
     }
 
-    public void onSaveInstanceState(Bundle paramBundle) {
+    public void onSaveInstanceState(@NonNull Bundle paramBundle) {
         super.onSaveInstanceState(paramBundle);
         Log.i("QuizActivity", "onSaveInstanceState");
         paramBundle.putInt("index", this.mCurrentIndex);
@@ -190,7 +195,7 @@ public class QuizActivity extends AppCompatActivity
     }*/
 
     @Override
-    public void onConfigurationChanged(Configuration newConfig) {
+    public void onConfigurationChanged(@NonNull Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
         //setContentView(R.layout.activity_quiz);
         if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {

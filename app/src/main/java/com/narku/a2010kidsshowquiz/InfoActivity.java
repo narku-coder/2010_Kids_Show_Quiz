@@ -3,7 +3,6 @@ package com.narku.a2010kidsshowquiz;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.net.Uri;
@@ -31,8 +30,6 @@ public class InfoActivity extends AppCompatActivity {
     private String vidName;
     private File vidFile;
     private final FirebaseStorage storage = FirebaseStorage.getInstance("gs://tv-show-quiz-25060.appspot.com");
-    private StorageReference gsReference;
-    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,23 +40,6 @@ public class InfoActivity extends AppCompatActivity {
         Intent intent = getIntent();
         this.infoID = intent.getIntExtra("info", this.infoID);
         this.infoString = getString(this.infoID);
-        mAuth = FirebaseAuth.getInstance();
-        mAuth.signInAnonymously()
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-                            Log.d(TAG, "signInAnonymously:success");
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            updateUI(user);
-                        } else {
-                            // If sign in fails, display a message to the user.
-                            Log.w(TAG, "signInAnonymously:failure", task.getException());
-                            updateUI(null);
-                        }
-                    }
-                });
         this.active = true;
         this.mInfoTextView = findViewById(R.id.info_text_view);
         this.mInfoTextView.setText(this.infoString);
@@ -118,18 +98,5 @@ public class InfoActivity extends AppCompatActivity {
         super.onStop();
         this.active = false;
         this.mVideoView.stopPlayback();
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        // Check if user is signed in (non-null) and update UI accordingly.
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        updateUI(currentUser);
-    }
-
-
-
-    private void updateUI(FirebaseUser currentUser) {
     }
 }
